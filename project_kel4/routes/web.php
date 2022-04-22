@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Middleware\CheckRole;
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\KelompokAdminController;
+use Illuminate\Http\Request;
 
 
 /*
@@ -21,7 +23,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Auth::routes(['verify' => true]);
+Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 //Route::post('/login', 'LoginController')->name('login');
 
@@ -32,3 +34,5 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 //});
 Route::get('admin', function () { return view('admin.admin'); })->middleware('checkRole:admin');
 Route::get('user', function () { return view('user.user'); })->middleware(['checkRole:user,admin']);
+//Route::get('kelompokadmin', function () { return view('kelompokadmin.index'); })->middleware('checkRole:admin');
+Route::resource('kelompokadmin', KelompokAdminController::class);

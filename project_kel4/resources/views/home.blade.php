@@ -20,17 +20,23 @@
         </div>
     </div>
             
-
-<a class="navbar-brand" href="{{ url('/') }}">
-    {{ config('app.name', 'Laravel') }}
-</a>
-<ul class="navbar-nav me-auto mb-2 mb-lg-0">
-    <li class="nav-item">
-        <a class="nav-link" aria-current="page" href="{{url('admin')}}">Halaman Admin</a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link" href="{{url('user')}}">Halaman user</a>
-    </li>
-</ul>
+<header>
+  
+    <!-- Jumbotron -->
+    <div class="mb-3 text-center bg-secondary">
+        <a class="navbar-brand text-white" href="{{ url('/') }}">
+            <h1>{{ config('app.name', 'Laravel') }}</h1>
+        </a>
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+                <a class="btn btn-dark text-white" aria-current="page" href="{{url('admin')}}" role="button"><h2>Halaman Admin</h2></a>
+            </li>
+            <li class="nav-item">
+                <a class="btn btn-dark text-white" href="{{url('user')}}" role="button"><h2>Halaman User</h2></a>
+            </li>
+        </ul>
+    </div>
+    <!-- Jumbotron -->
+  </header>
 </div>
 @endsection

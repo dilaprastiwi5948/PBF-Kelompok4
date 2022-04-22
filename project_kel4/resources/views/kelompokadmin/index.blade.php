@@ -8,7 +8,7 @@
     <meta name="author" content="TemplateMo">
     <link href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i&display=swap" rel="stylesheet">
 
-    <title>Beranda Admin</title>
+    <title>Kelompok Arisan Admin</title>
 
     <!-- Bootstrap core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -49,16 +49,14 @@ https://templatemo.com/tm-551-stand-blog
           </button>
           <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ml-auto">
-              <li class="nav-item active">
-                <a class="nav-link" href="admin">Home
-                  <span class="sr-only">(current)</span>
-                </a>
+              <li class="nav-item">
+                <a class="nav-link" href="admin">HOME</a>
               </li> 
               <div class="dropdown">
-                <button class="btn btn-light dropdown-toggle text-dark " type="button" data-toggle="dropdown">ARISAN
+                <button class="btn btn-light dropdown-toggle text-dark active" type="button" data-toggle="dropdown">ARISAN
                 <span class="caret"></span></button>
                 <ul class="dropdown-menu text-center">
-                  <li><a class="nav-link " href="kelompokadmin"><p>Kelompok Arisan</p></a></li>
+                  <li><a class="nav-link active" href="kelompokadmin">Kelompok Arisan</a></li>
                   <li><a class="nav-link " href="#"><p>Permintaan Arisan</p></a></li>
                 </ul>
               </div>
@@ -71,42 +69,67 @@ https://templatemo.com/tm-551-stand-blog
               <li class="nav-item">
                 <a class="nav-link" href="contact.html">Contact Us</a>
               </li>
+              
             </ul>
           </div>
         </div>
       </nav>
     </header>
 
-    <div id="angotakelompok">
-      <div class="container">
-          <div class="row">
-              <div class="col-md-5 col-sm-3"></div>
-              <div class="col-md-7 col-sm-9 " >
-                  <h2>-</h2>
-                  <h2>-</h2>
-                  <h4>-</h4>
-              </div>
-          </div>
-      </div>
-  </div>
-  
-  <div
-  class="p-5 text-center bg-image rounded-3"
-  style="
-    background-image: url(images/arisan.webp);
-    height: 400px;
-  "
->
-  <div class="mask" style="background-color: rgba(0, 0, 0, 0.6);">
-    <div class="d-flex justify-content-center align-items-center h-100">
-      <div class="text-white">
-        <h1 class="mb-3">SELAMAT DATANG ADMIN</h1>
-      </div>
-    </div>
-  </div>
-</div>
-  </body>
 
+    <div id="angotakelompok">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-5 col-sm-3"></div>
+                <div class="col-md-7 col-sm-9 " >
+                    <h2>-</h2>
+                    <h2>-</h2>
+                    <h4>-</h4>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="mt-4 p-5 bg-primary text-white rounded text-center">
+      <h1>Anggota Kelompok 1</h1>
+    </div>
+    </body>
+
+    @if ($message = Session::get('success')) 
+<div class="alert alert-success"> 
+    <p>{{ $message }}</p> 
+</div> 
+@endif
+<table class="table table-striped thead-light "> 
+    <tr> 
+        <th>ID </th> 
+        <th>Nama</th> 
+        <th>Status Menang Undian</th> 
+        <th>Bulan</th> 
+        <th width="280px">Action</th> 
+    </tr>
+
+    @foreach ($kelompokadmin as $KelompokAdmin) 
+    <tr> 
+        <td>{{ $KelompokAdmin->id }}</td> 
+        <td>{{ $KelompokAdmin->nama }}</td> 
+        <td>{{ $KelompokAdmin->status }}</td> 
+        <td>{{ $KelompokAdmin->bulan }}</td>  
+        <td> <br>
+        <form action="{{ route('kelompokadmin.destroy',$KelompokAdmin->id) }}" method="POST"> 
+            <a class="btn btn-primary" href="{{ route('kelompokadmin.edit',$KelompokAdmin->id) }}">Edit</a> 
+            @csrf
+            @method('DELETE')
+            <button type="submit" class="btn btn-danger">Delete</button> 
+        </form> 
+    </td> 
+</tr>
+@endforeach 
+</table> 
+<div class="float-right my-2"> 
+    <a class="btn btn-success" href="{{ route('kelompokadmin.create') }}"> Input Barang</a> 
+</div> 
+</div> 
     
     <footer>
       <div class="container">
